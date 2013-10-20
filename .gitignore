@@ -1,0 +1,8 @@
+.gitignore
+.git/
+*.swp
+*~
+*.old
+*.bak
+*.o
+
