@@ -27,7 +27,6 @@ void SplashScreen::Show(sf::RenderWindow& renderWindow)
          || event.type == sf::Event::MouseButtonPressed
          || event.type == sf::Event::Closed)
       {
-        std::cout << "lol\n";
         return;
       }
     }

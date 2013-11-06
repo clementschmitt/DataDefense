@@ -12,6 +12,7 @@ class Game
 
     static void ShowSplashScreen();
     static void ShowMenu();
+    static void ShowLevel();
 
     enum GameState { Uninitialized, ShowingSplash, ShowingMenu, Playing, Exiting};
 

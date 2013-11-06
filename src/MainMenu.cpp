@@ -47,6 +47,10 @@ MainMenu::MenuResult  MainMenu::GetMenuResponse(sf::RenderWindow& window)
   {
     while(window.pollEvent(menuEvent))
     {
+      if(menuEvent.type == sf::Event::MouseButtonPressed)
+      {
+        return Play;
+      }
       if(menuEvent.type == sf::Event::Closed)
       {
         return Exit;

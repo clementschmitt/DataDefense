@@ -1,7 +1,7 @@
 CC = g++
 CFLAGS = -Wall
 EXEC_NAME = DataDefense
-OBJ_FILES = main.o Game.o SplashScreen.o MainMenu.o
+OBJ_FILES = main.o Game.o SplashScreen.o MainMenu.o Level.o Map.o
 LIBS = -lsfml-graphics -lsfml-window -lsfml-system
 
 all : $(EXEC_NAME)

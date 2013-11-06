@@ -2,6 +2,7 @@
 #include "Game.h"
 #include "SplashScreen.h"
 #include "MainMenu.h"
+#include "Level.h"
 
 void Game::Start(void)
 {
@@ -53,6 +54,21 @@ void Game::ShowMenu()
   }
 }
 
+void Game::ShowLevel()
+{
+    Level level;
+    level.LevelInit();
+    Level::LevelResult result = level.Show(_mainWindow);
+
+    switch(result)
+    {
+        case Level::Exit:
+        {
+          _gameState = Game::ShowingMenu;
+        }
+    }
+}
+
 void Game::GameLoop()
 {
   sf::Event currentEvent;
@@ -62,14 +78,7 @@ void Game::GameLoop()
     {
       case Game::Playing:
       {
-        _mainWindow.clear(sf::Color(255,0,0));
-        _mainWindow.display();
-
-        if(currentEvent.type == sf::Event::Closed)
-        {
-          _gameState = Game::Exiting;
-        }
-        break;
+        ShowLevel();
       }
       case Game::ShowingSplash:
       {
