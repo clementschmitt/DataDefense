@@ -33,4 +33,6 @@ void VisibleGameObject::Draw(sf::RenderWindow& window)
 
 void VisibleGameObject::SetPosition(float x, float y)
 {
+  if(_isLoaded)
+    _sprite.setPosition(x,y);
 }

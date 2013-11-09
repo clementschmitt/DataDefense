@@ -17,6 +17,7 @@ Level::LevelResult Level::Show(sf::RenderWindow& window)
 {
   window.clear(sf::Color(0,0,255));
   this->map->Draw(window);
+  this->map->DrawGrid(window);
   window.display();
 
   return GetLevelResponse(window);
