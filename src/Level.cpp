@@ -8,13 +8,15 @@ Level::~Level()
 
 void Level::LevelInit()
 {
-    this->map = new Map();
     std::cout << "level initilization \n";
+    this->map = new Map();
+    this->map->Load("../assets/img/map1.png");
 }
 
 Level::LevelResult Level::Show(sf::RenderWindow& window)
 {
-  window.clear(sf::Color(255,0,0));
+  window.clear(sf::Color(0,0,255));
+  this->map->Draw(window);
   window.display();
 
   return GetLevelResponse(window);

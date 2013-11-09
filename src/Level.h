@@ -13,4 +13,6 @@ class Level
   private:
     LevelResult GetLevelResponse(sf::RenderWindow& window);
     Map *map;
+    /* background img */
+    sf::Sprite img_map;
 };

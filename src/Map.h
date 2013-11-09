@@ -1,12 +1,8 @@
-#include "SFML/Graphics.hpp"
-#include "SFML/Window.hpp"
-#include <string>
+#include "VisibleGameObject.h"
 
-class Map
+class Map: public VisibleGameObject
 {
   public:
-    void Show(sf::RenderWindow& window);
-
-  private:
-    std::string map_path;
+    Map();
+    ~Map();
 };
