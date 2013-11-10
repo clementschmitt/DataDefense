@@ -1,3 +1,6 @@
+#ifndef VISIBLE_H
+#define VISIBLE_H
+
 #include <iostream>
 #include <string>
 #include "SFML/Window.hpp"
@@ -20,3 +23,4 @@ class VisibleGameObject
     std::string _filename;
     bool _isLoaded;
 };
+#endif

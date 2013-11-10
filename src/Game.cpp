@@ -57,7 +57,7 @@ void Game::ShowMenu()
 void Game::ShowLevel()
 {
     Level level;
-    level.LevelInit();
+    level.LevelInit(0,8,19,8);
     Level::LevelResult result = level.Show(_mainWindow);
 
     switch(result)

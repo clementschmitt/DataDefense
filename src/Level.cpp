@@ -1,23 +1,52 @@
 #include "Level.h"
 #include <iostream>
+#include "Clickable.h"
 
 Level::~Level()
 {
     std::cout << "destruction level \n";
 }
 
-void Level::LevelInit()
+/* CALLBACK */
+void play_action(){
+  std::cout << "play!!\n";
+}
+
+void Level::LevelInit(int start_x, int start_y, int close_x, int close_y)
 {
+    if (start_x < 0 || start_x > 19 || start_y < 0 || start_y > 15
+     || close_x < 0 || close_x > 19 || close_y < 0 || close_y > 15)
+    {
+      std::cout << "Error: start/close coord fail\n";
+      exit(1);
+    } else {
+      _start_x = start_x;
+      _start_y = start_y;
+      _close_x = close_y;
+      _close_y = close_y;
+    }
+
     std::cout << "level initilization \n";
-    this->map = new Map();
-    this->map->Load("../assets/img/map1.png");
+
+    Clickable *play_button = new Clickable();
+    play_button->Callback(&play_action);
+
+    /* Event Manager */
+    this->_event_manager = new EventManager();
+    this->_event_manager->AddClickable(play_button);
+
+    this->_map = new Map();
+    this->_map->Load("../assets/img/map1.png");
+
+    this->_path = new Path();
 }
 
 Level::LevelResult Level::Show(sf::RenderWindow& window)
 {
   window.clear(sf::Color(0,0,255));
-  this->map->Draw(window);
-  this->map->DrawGrid(window);
+  this->_map->Draw(window);
+  this->_map->DrawGrid(window);
+  this->_path->DrawPath(window,_start_x,_start_y,_close_x,_close_y);
   window.display();
 
   return GetLevelResponse(window);
@@ -31,6 +60,10 @@ Level::LevelResult  Level::GetLevelResponse(sf::RenderWindow& window)
   {
     while(window.pollEvent(levelEvent))
     {
+      if(levelEvent.type == sf::Event::MouseButtonPressed)
+      {
+        this->_event_manager->CallbackClickable();
+      }
       if(levelEvent.type == sf::Event::Closed)
       {
         exit(1);
