@@ -62,7 +62,7 @@ Level::LevelResult  Level::GetLevelResponse(sf::RenderWindow& window)
     {
       if(levelEvent.type == sf::Event::MouseButtonPressed)
       {
-        this->_event_manager->CallbackClickable();
+        this->_event_manager->CallbackClickable(levelEvent.mouseButton.x, levelEvent.mouseButton.y);
       }
       if(levelEvent.type == sf::Event::Closed)
       {

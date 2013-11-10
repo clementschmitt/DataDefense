@@ -8,7 +8,7 @@ class EventManager
     ~EventManager();
 
     void AddClickable(const Clickable* clickable);
-    void CallbackClickable();
+    void CallbackClickable(int x, int y);
 
   private:
    std::list<const Clickable*> _clickable; 

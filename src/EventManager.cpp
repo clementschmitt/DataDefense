@@ -8,7 +8,7 @@ void EventManager::AddClickable(const Clickable* clickable)
   _clickable.push_front(clickable);
 }
 
-void EventManager::CallbackClickable()
+void EventManager::CallbackClickable(int x, int y)
 {
   std::list<const Clickable*>::const_iterator iterator;
 
