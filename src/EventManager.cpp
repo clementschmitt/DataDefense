@@ -15,7 +15,7 @@ void EventManager::Draw(sf::RenderWindow& window)
 
   for (iterator = _clickable.begin(); iterator != _clickable.end(); ++iterator)
   {
-    (*iterator)->Draw(window); 
+    //(*iterator)->Draw(window); 
   }
  
 }
