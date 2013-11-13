@@ -9,7 +9,11 @@ Level::~Level()
 
 /* CALLBACK */
 void play_action(){
-  std::cout << "play!!\n";
+}
+
+void pause_action()
+{
+    std::cout << "pause\n";
 }
 
 void Level::LevelInit(int start_x, int start_y, int close_x, int close_y)
@@ -28,12 +32,13 @@ void Level::LevelInit(int start_x, int start_y, int close_x, int close_y)
 
     std::cout << "level initilization \n";
 
-    Clickable *play_button = new Clickable();
-    play_button->Callback(&play_action);
+    Clickable *pause_button = new Clickable();
+    pause_button->Load("../assets/img/pause.png");
+    pause_button->Callback(&pause_action);
 
     /* Event Manager */
     this->_event_manager = new EventManager();
-    this->_event_manager->AddClickable(play_button);
+    this->_event_manager->AddClickable(pause_button);
 
     this->_map = new Map();
     this->_map->Load("../assets/img/map1.png");
@@ -47,6 +52,7 @@ Level::LevelResult Level::Show(sf::RenderWindow& window)
   this->_map->Draw(window);
   this->_map->DrawGrid(window);
   this->_path->DrawPath(window,_start_x,_start_y,_close_x,_close_y);
+  this->_event_manager->Draw(window);
   window.display();
 
   return GetLevelResponse(window);
