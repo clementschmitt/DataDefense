@@ -40,30 +40,43 @@ void Level::LevelInit(int start_x, int start_y, int close_x, int close_y)
     this->_event_manager = new EventManager();
     this->_event_manager->AddClickable(pause_button);
 
+    /* chargement du background map */
     this->_map = new Map();
     this->_map->Load("../assets/img/map1.png");
 
+    /* le path représente le chemin que vont prendre
+     * les ennemis */
     this->_path = new Path();
+
+    /* test avec un ennemi */
+    sf::Texture* texture = new sf::Texture();
+    texture->loadFromFile("../assets/img/worm.png");
+
+    Enemy *e = new Enemy(texture);
+    this->_enemy_wave.push_back(e);
 }
 
+/* partie graphique du level */
 Level::LevelResult Level::Show(sf::RenderWindow& window)
 {
-  window.clear(sf::Color(0,0,255));
-  this->_map->Draw(window);
-  this->_map->DrawGrid(window);
-  this->_path->DrawPath(window,_start_x,_start_y,_close_x,_close_y);
-  this->_event_manager->Draw(window);
-  window.display();
-
+  
   return GetLevelResponse(window);
 }
 
 /* boucle de jeu */
 Level::LevelResult  Level::GetLevelResponse(sf::RenderWindow& window)
 {
+  window.setFramerateLimit(60);
+  sf::Clock frameClock;
+  
   sf::Event levelEvent;
+
   while(true)
   {
+
+    /* 
+     * process input 
+     */
     while(window.pollEvent(levelEvent))
     {
       if(levelEvent.type == sf::Event::MouseButtonPressed)
@@ -80,5 +93,22 @@ Level::LevelResult  Level::GetLevelResponse(sf::RenderWindow& window)
         return Exit;
       }
     }
+
+    /*
+     * update
+     */
+    //this->_enemy_wave.Update();
+    
+    /*
+     * render
+     */
+    window.clear(sf::Color(0,0,0));
+    this->_map->Draw(window);
+    this->_map->DrawGrid(window);
+    this->_path->DrawPath(window,_start_x,_start_y,_close_x,_close_y);
+    this->_enemy_wave.Draw(window,frameClock.restart());
+    this->_event_manager->Draw(window);
+    window.display();
+
   }
 }

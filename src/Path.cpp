@@ -20,13 +20,16 @@ struct tg case_to_xy(int a, int b)
 
 void Path::DrawPath(sf::RenderWindow& window, int start_x, int start_y, int close_x, int close_y)
 {
-  /* appel à a* depuis utils */  
   std::vector<tg> v;
-  tg lol;
-  lol.a = 0;
-  lol.b = 0;
-  v.push_back(lol);
-
+  /* appel à a* depuis utils */  
+  for (int i=0;i<20;i++)
+  {
+    tg lol;
+    lol.a = i;
+    lol.b = 8;
+    v.push_back(lol);
+  }
+  
   std::vector<tg>::iterator it;
 
   for (it = v.begin(); it != v.end(); ++it)
@@ -37,5 +40,4 @@ void Path::DrawPath(sf::RenderWindow& window, int start_x, int start_y, int clos
     rct.setPosition(sf::Vector2f(tmp.a,tmp.b));
     window.draw(rct);
   }
-  
 }

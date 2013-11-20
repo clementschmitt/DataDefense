@@ -18,8 +18,8 @@ class VisibleGameObject
     virtual void SetPosition(float x, float y);
 
   private:
-    sf::Sprite _sprite;
     sf::Texture _texture;
+    sf::Sprite _sprite;
     std::string _filename;
     bool _isLoaded;
 };

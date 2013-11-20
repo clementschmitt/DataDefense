@@ -1,6 +1,23 @@
 #include "Enemy.h"
 
-Enemy::Enemy(){}
+Enemy::Enemy(sf::Texture* texture)
+{
+  _texture = texture;
+  _isCarryingData = false;
+  _state = Walking;
+  
+  this->setPosition(100,100);
+  this->setFrameTime(sf::seconds(0.2));
+  
+  _walking.setSpriteSheet(*_texture);
+  _walking.addFrame(sf::IntRect(0,60,30,30));
+  _walking.addFrame(sf::IntRect(30,60,30,30));
+  _walking.addFrame(sf::IntRect(60,60,30,30));
+  _walking.addFrame(sf::IntRect(90,60,30,30));
+  this->setAnimation(_walking);
+
+}
+
 Enemy::~Enemy(){}
 
 /**
@@ -8,9 +25,8 @@ Enemy::~Enemy(){}
  * \param target la cible vers laquelle l'ennemi doit se dirige
  * \return void
  */
-void Enemy::movingTo(VisibleGameObject target)
+void Enemy::moveTo()
 {
-	
 }
 
 /**
@@ -32,3 +48,25 @@ void Enemy::dropData()
 {
 
 }
+
+void Enemy::UpdateEnemy()
+{
+   switch(_state)
+   {
+     case Enemy::Walking:
+         Walk();
+         break;
+     default:
+         break;
+   } 
+}
+
+void Enemy::Walk()
+{
+  std::cout << "walk\n";
+  _state = Enemy::Walking;
+}
+
+void Enemy::setWalkAnimation()
+{
+  }

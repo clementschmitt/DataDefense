@@ -1,7 +1,10 @@
 #ifndef ENEMY_H
 #define ENEMY_H
 
+#include <string>
 #include "VisibleGameObject.h"
+#include "Animation.h"
+#include "AnimatedSprite.h"
 
 enum attack{
 	virus,
@@ -11,25 +14,37 @@ enum attack{
 	phising,
 	scam
 	//à compléter
-}
+};
 
-class Enemy : public VisibleGameObject
+
+class Enemy : public AnimatedSprite
 {
   public:
-    Enemy();
+    enum state{Walking};
+    Enemy(sf::Texture* texture);
     ~Enemy();
-    void moveTo(VisibleGameObject target);
+
+    void UpdateEnemy();
+    void Walk();
+
+    void moveTo();
     VisibleGameObject isHeadingTo();
     void grabData();
     void dropData();
 
+    /* animation */
+    void setWalkAnimation();
+
   private:
-  	string _name;  	         //nom de l'ennemi (peut être inutile car l'ennemi a aussi un type)
+    std::string _name; //nom de l'ennemi (peut être inutile car l'ennemi a aussi un type)
   	int _life;
   	int _speed;
   	bool _isDead; 
     bool _isCarryingData;
     attack _type; 
+    state _state;
+    sf::Texture* _texture;
+    Animation _walking;
 };
 
 #endif

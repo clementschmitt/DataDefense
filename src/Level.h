@@ -1,8 +1,12 @@
 #include "SFML/Graphics.hpp"
 #include "SFML/Window.hpp"
+#include <list>
+
 #include "Map.h"
 #include "Path.h"
 #include "EventManager.h"
+#include "Enemy.h"
+#include "EnemyWave.h"
 
 class Level
 {
@@ -17,6 +21,7 @@ class Level
     Map *_map;
     Path *_path;
     EventManager *_event_manager;
+    EnemyWave _enemy_wave;
 
     int _start_x;
     int _start_y;
