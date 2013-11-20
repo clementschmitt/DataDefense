@@ -3,7 +3,6 @@
 
 #include <list>
 #include "Enemy.h"
-
 class EnemyWave: public std::list<Enemy*>
 {
     public:

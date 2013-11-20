@@ -49,6 +49,10 @@ void Level::LevelInit(int start_x, int start_y, int close_x, int close_y)
     this->_path = new Path();
 
     /* test avec un ennemi */
+
+    /* on charge une seule texture pour les ennemis
+     * (du même type biensur)
+     */
     sf::Texture* texture = new sf::Texture();
     texture->loadFromFile("../assets/img/worm.png");
 
@@ -56,7 +60,6 @@ void Level::LevelInit(int start_x, int start_y, int close_x, int close_y)
     this->_enemy_wave.push_back(e);
 }
 
-/* partie graphique du level */
 Level::LevelResult Level::Show(sf::RenderWindow& window)
 {
   
@@ -97,7 +100,7 @@ Level::LevelResult  Level::GetLevelResponse(sf::RenderWindow& window)
     /*
      * update
      */
-    //this->_enemy_wave.Update();
+    this->_enemy_wave.Update();
     
     /*
      * render

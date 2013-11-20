@@ -10,6 +10,7 @@ void EnemyWave::Draw(sf::RenderWindow& window, sf::Time time)
     }
 }
 
+/* changement d'état */
 void EnemyWave::Update()
 {
     std::list<Enemy*>::iterator it;
