@@ -23,7 +23,7 @@ public:
 	bool operator==(const Node& a);
 private:
 	//noeud parent
-	Node *parent = 0;
+	Node *parent;
 	//distance entre le point de départ et le noeud
 	int _distP;
 	//distance entre le noeud et le point d'arriver à vol d'oiseau

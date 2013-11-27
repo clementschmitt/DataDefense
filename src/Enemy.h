@@ -7,13 +7,13 @@
 #include "AnimatedSprite.h"
 
 enum attack{
-	virus,
-	spyware,
-	malware,
-	trojan,
-	phising,
-	scam
-	//à compléter
+  virus,
+  spyware,
+  malware,
+  trojan,
+  phising,
+  scam
+  //à compléter
 };
 
 
@@ -28,7 +28,6 @@ class Enemy : public AnimatedSprite
     void Walk();
 
     void moveTo();
-    VisibleGameObject isHeadingTo();
     void grabData();
     void dropData();
 
@@ -36,15 +35,15 @@ class Enemy : public AnimatedSprite
     void setWalkAnimation();
 
   private:
-    std::string _name; //nom de l'ennemi (peut être inutile car l'ennemi a aussi un type)
-  	int _life;
-  	int _speed;
-  	bool _isDead; 
+    int _life;
+    int _speed;
+    bool _isDead; 
     bool _isCarryingData;
     attack _type; 
     state _state;
     sf::Texture* _texture;
     Animation _walking;
+    //std::vector<Point> _path;
 };
 
 #endif

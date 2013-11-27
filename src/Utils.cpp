@@ -1,4 +1,4 @@
-#include "Util.h"
+#include "Utils.h"
 
 Utils::Utils(void)
 {
@@ -17,7 +17,7 @@ Utils::~Utils()
 * A : point d'arrivée
 * v : vecteur pour stocker le chemin
 */
-void Utils::aStar(Point D, Point A, std::vector<Point> &v)
+void Utils::aStar(Point D, Point A, std::vector<Point> &v,  int towermap[20][15])
 {
 	Node *current;
 
@@ -36,7 +36,7 @@ void Utils::aStar(Point D, Point A, std::vector<Point> &v)
 
 	_openlist.push_back(current);
 	addCloseList(*current);
-	addAdj(*current);
+	addAdj(*current, towermap);
 
 	//tant que la liste n'est pas vide et que l'on est pas sur la case d'arrivée
 	while (!(current->getCoor().x == Arr->getCoor().x && current->getCoor().y == Arr->getCoor().y) && !_openlist.empty())
@@ -45,7 +45,7 @@ void Utils::aStar(Point D, Point A, std::vector<Point> &v)
 		current = new Node(bestNode(_openlist));
 
 		addCloseList(*current);
-		addAdj(*current);
+		addAdj(*current, towermap);
 	}
 
 	if (current->getCoor().x == Arr->getCoor().x && current->getCoor().y == Arr->getCoor().y)
@@ -60,9 +60,9 @@ void Utils::aStar(Point D, Point A, std::vector<Point> &v)
 }
 
 //retourne vrai si la case est vide faux sinon
-bool Utils::caseIsEmpty(int i, int j)
+bool Utils::caseIsEmpty(int i, int j, int towermap[20][15])
 {
-	//return Map[i][j] != true
+	return towermap[i][j] != true
 }
 
 //calcul de la distance de Manhatan
@@ -79,7 +79,7 @@ int Utils::distanceCub(Point D, Point A)
 }
 
 //Ajoute les case adjacente dans la liste ouverte
-void Utils::addAdj(Node &C)
+void Utils::addAdj(Node &C, int towermap[20][15])
 {
 	Node *tmp;
 	int pos;
@@ -102,7 +102,7 @@ void Utils::addAdj(Node &C)
 
 	for (unsigned int i = 0; i < t.size(); i++)
 	{
-		if (t[i].x >= 0 && t[i].y >= 0/*&& t[i].x < Map.length() && t[i].y < Map.height() && Map[t[i].x][t[i].y] == false */)
+		if (t[i].x >= 0 && t[i].y >= 0 && t[i].x < 20 && t[i].y < 15 && caseIsEmpty(t[i].x, t[i].y, towermap))
 		{
 			tmp = new Node(t[i]);
 			if (!isHere(*tmp, _closedList))

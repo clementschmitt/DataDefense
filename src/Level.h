@@ -7,6 +7,7 @@
 #include "EventManager.h"
 #include "Enemy.h"
 #include "EnemyWave.h"
+//#include "Utils.h"
 
 class Level
 {
@@ -17,6 +18,7 @@ class Level
     void LevelInit(int start_x, int start_y, int close_x, int close_y);
 
   private:
+    int _towerMap[20][15];
     LevelResult GetLevelResponse(sf::RenderWindow& window);
     Map *_map;
     Path *_path;

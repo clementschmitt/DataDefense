@@ -58,6 +58,27 @@ void Level::LevelInit(int start_x, int start_y, int close_x, int close_y)
 
     Enemy *e = new Enemy(texture);
     this->_enemy_wave.push_back(e);
+
+    for (int i = 0; i < 20; ++i)
+    {
+      for (int j = 0; j < 15; ++j)
+      {
+        _towerMap[i][j] = 0;
+      }
+    }
+    /*
+    Utils *u = new Utils();
+    Point start;
+    start.x = _start_x;
+    start.y = _start_y;
+    Point end;
+    end.x = _close_x;
+    end.y = _close_y;
+    std::vector<Point> path;
+    //u->aStar(start, end, &path, _towerMap);
+    u->aStar(start, end, path, _towerMap);
+    */
+
 }
 
 Level::LevelResult Level::Show(sf::RenderWindow& window)
